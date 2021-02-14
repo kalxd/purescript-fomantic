@@ -1,10 +1,3 @@
-module Main where
+module Main (module Concur.Fomantic) where
 
-import Prelude
-
-import Effect (Effect)
-import Effect.Console (log)
-
-main :: Effect Unit
-main = do
-  log "🍝"
+import Concur.Fomantic
