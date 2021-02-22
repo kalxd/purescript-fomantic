@@ -1,3 +1,3 @@
-module Concur.Fomantic (module E) where
+module Concur.Fomantic (module Button) where
 
-import Concur.Fomantic.Variant (ElementStyleType(..)) as E
+import Concur.Fomantic.Button (button, uiButton) as Button
