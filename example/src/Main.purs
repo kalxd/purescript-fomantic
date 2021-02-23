@@ -12,7 +12,7 @@ import Effect.Aff (Milliseconds(..), delay)
 import Effect.Aff.AVar as AV
 import Effect.Aff.Class (liftAff)
 import Effect.Class (liftEffect)
-import Effect.Console (logShow)
+import Effect.Console (log, logShow)
 import Page.Button (buttonPage)
 import Page.Home (homePage)
 import Routing.Hash (matches)
@@ -45,6 +45,7 @@ app = do
     void $ matches appRoute \_ route -> do
       void $ EV.tryPut route var
     pure var
+  liftEffect $ log "do this?"
   let awaitRoute = liftAff do
         ref <- AV.take routeRef
         liftEffect $ logShow ref
@@ -52,6 +53,7 @@ app = do
   liftAff $ delay $ Milliseconds 0.0
   go awaitRoute HomeR
   where go awaitRoute route = do
+          liftEffect $ log "hehe"
           route' <- awaitRoute <|> pickWidget route
           go awaitRoute route'
 
