@@ -12,7 +12,7 @@ import Effect (Effect)
 import Concur.Fomantic as B
 
 homePage :: forall a. Widget HTML a
-homePage = D.div [P.className "ui container"] [D.text "hello"]
+homePage = D.div [P.className "ui container"] [B.uiButton [] [] [D.text "sb"]]
 
 runApp :: forall a. Widget HTML a -> Effect Unit
 runApp = runWidgetInDom "app"
