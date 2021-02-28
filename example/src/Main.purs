@@ -7,9 +7,12 @@ import Concur.Fomantic.Internal.DOM (UIWidget)
 import Concur.React.DOM as D
 import Concur.React.Props (className, href)
 import Concur.React.Run (runWidgetInDom)
-import Control.Alt ((<|>))
+import Concur.Route (withRoute)
 import Effect (Effect)
-import Page.Route (AppRoute(..), routeWidget, watchRouteChange)
+import Page.Route (AppRoute(..), appRoute, pickWidget)
+
+watchRoute :: forall a. (AppRoute -> UIWidget AppRoute) -> UIWidget a
+watchRoute = withRoute appRoute HomeR
 
 topMenu :: forall a. AppRoute -> UIWidget a
 topMenu route = D.nav [className "ui menu"] [body]
@@ -23,18 +26,14 @@ topMenu route = D.nav [className "ui menu"] [body]
                 ]
 
 topMenuWidget :: forall a. UIWidget a
-topMenuWidget = watchRouteChange \widget -> do
-  go widget HomeR
-  where go awaitWidget route = do
-          route' <- awaitWidget <|> topMenu route
-          go awaitWidget route'
+topMenuWidget = watchRoute topMenu
 
 runApp :: forall a. UIWidget a -> Effect Unit
 runApp = runWidgetInDom "app"
 
 appWidget :: forall a. UIWidget a
 appWidget = D.div' [ topMenuWidget
-                   , container [routeWidget]
+                   , container [watchRoute pickWidget]
                    ]
 
 main :: Effect Unit
