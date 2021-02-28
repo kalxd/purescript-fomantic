@@ -44,20 +44,6 @@ watchRouteChange action = do
   liftAff $ delay $ Milliseconds 0.0
   action awaitRoute
 
--- routeWidget :: forall a. UIWidget a
--- routeWidget = do
---   routeRef <- liftEffect do
---     var <- EV.empty
---     void $ matches appRoute \_ route -> do
---       void $ EV.tryPut route var
---     pure var
---   let awaitRoute = liftAff $ AV.take routeRef
---   liftAff $ delay $ Milliseconds 0.0
---   go awaitRoute HomeR
---   where go awaitRoute route = do
---           route' <- awaitRoute <|> pickWidget route
---           go awaitRoute route'
-
 routeWidget :: forall a. UIWidget a
 routeWidget = watchRouteChange \route -> do
   go route HomeR
