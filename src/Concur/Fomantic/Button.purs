@@ -2,11 +2,11 @@
 module Concur.Fomantic.Button where
 
 import Concur.Fomantic.ClassName (UIClassName(..))
-import Concur.Fomantic.Internal.DOM (UIEl, mkBaseEl, mkEl)
+import Concur.Fomantic.Internal.DOM (UIEl, wrapBaseEl, wrapEl)
 import Concur.React.DOM as D
 
 button :: UIEl
-button = mkEl D.button
+button = wrapEl D.button
 
 uiButton :: UIEl
-uiButton = mkBaseEl [RawClass "ui button"] D.button
+uiButton = wrapBaseEl D.button [RawClass "ui button"]

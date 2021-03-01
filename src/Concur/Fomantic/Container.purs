@@ -2,9 +2,8 @@
 module Concur.Fomantic.Container (container) where
 
 import Concur.Fomantic.ClassName (UIClassName(..))
-import Concur.Fomantic.Internal.DOM (mkEl')
+import Concur.Fomantic.DOM (div')
 import Concur.React.DOM (El')
-import Concur.React.DOM as D
 
 container :: El'
-container = mkEl' D.div [RawClass "ui container"]
+container = div' [RawClass "ui container"]

@@ -10,6 +10,7 @@ You can edit this file as you like.
   , "concur-react"
   , "console"
   , "effect"
+  , "foldable-traversable"
   , "maybe"
   , "psci-support"
   , "routing"
