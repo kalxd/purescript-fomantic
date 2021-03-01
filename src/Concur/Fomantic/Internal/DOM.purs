@@ -41,6 +41,10 @@ wrapBaseEl :: D.El -> Array UIClassName -> UIEl
 wrapBaseEl el base cl = wrapEl el cl'
   where cl' = cl <> base
 
+wrapBaseEl' :: D.El -> Array UIClassName -> UIEl'
+wrapBaseEl' el cl cl' = el [prop]
+  where prop = mapClassName $ cl <> cl'
+
 wrapLeaf :: D.ElLeaf -> UILeaf
 wrapLeaf el cl props =  el props'
   where props' = (mapClassName cl) : props

@@ -36,7 +36,7 @@ runApp = runWidgetInDom "app"
 
 appWidget :: forall a. UIWidget a
 appWidget = D.div' [ topMenuWidget
-                   , container [segmentWith [Teal] [] [watchRoute pickWidget]]
+                   , container [segmentWith [Teal] [watchRoute pickWidget]]
                    ]
 
 main :: Effect Unit
