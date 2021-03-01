@@ -2,10 +2,11 @@ module Main where
 
 import Prelude
 
+import Concur.Fomanti.Prop (hashHref)
 import Concur.Fomantic.Container (container)
 import Concur.Fomantic.Internal.DOM (UIWidget)
 import Concur.React.DOM as D
-import Concur.React.Props (className, href)
+import Concur.React.Props (className)
 import Concur.React.Run (runWidgetInDom)
 import Concur.Route (withRoute)
 import Effect (Effect)
@@ -21,8 +22,8 @@ topMenu route = D.nav [className "ui menu"] [body]
                          else
                            className "item"
         body = container menus
-        menus = [ D.a [itemClass HomeR, href "#/"] [D.text "首页"]
-                , D.a [itemClass ButtonR, href "#/button"] [D.text "按钮"]
+        menus = [ D.a [itemClass HomeR, hashHref "/"] [D.text "首页"]
+                , D.a [itemClass ButtonR, hashHref "/button"] [D.text "按钮"]
                 ]
 
 topMenuWidget :: forall a. UIWidget a
