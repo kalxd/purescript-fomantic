@@ -3,8 +3,10 @@ module Main where
 import Prelude
 
 import Concur.Fomanti.Prop (hashHref)
+import Concur.Fomantic.ClassName (UIClassName(..))
 import Concur.Fomantic.Container (container)
 import Concur.Fomantic.Internal.DOM (UIWidget)
+import Concur.Fomantic.Segment (segmentWith)
 import Concur.React.DOM as D
 import Concur.React.Props (className)
 import Concur.React.Run (runWidgetInDom)
@@ -34,7 +36,7 @@ runApp = runWidgetInDom "app"
 
 appWidget :: forall a. UIWidget a
 appWidget = D.div' [ topMenuWidget
-                   , container [watchRoute pickWidget]
+                   , container [segmentWith [Teal] [] [watchRoute pickWidget]]
                    ]
 
 main :: Effect Unit
